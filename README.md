@@ -30,7 +30,7 @@ node.default['iis-lb']['members'] = [{
   "ssl_port" => 443
 }]
 
-include_recipe 'iis-lib'
+include_recipe 'iis-lib::default'
 ```
 
 ## Dependencies
