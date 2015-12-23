@@ -2,8 +2,15 @@
 
 This cookbook configures IIS as a simple web load-balancer by creating an IIS Server Farm. It also allows you to pass a `node['iis-lb']['members']` hash to add servers to the said server farm.
 
-## Example usage
+## Platforms
 
+This cookbook was tested on:
+
+- Windows Server 2012 R2
+
+## Usage
+
+Adding ` recipe['iis-lb::default'] ` to your Windows Server's `run_list` will install all the necessary components and set the node up with a Server Farm `myServerFarm`. This will also add two servers to the Server Farm, based on the `node['iis-lb']['members']` hash.
 In a wrapper recipe:
 ```
 node.default['iis-lb']['members'] = [{
