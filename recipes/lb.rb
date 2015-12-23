@@ -25,10 +25,10 @@ end
       not_if "#{ENV['WinDir']}\\System32\\inetsrv\\appcmd.exe set config /section:webFarms /\"[name='#{farm}'].[address='#{server['address']}']\".enabled:true"
     end
 
-    config_commands = [ "-section:webFarms /\"[name='#{farm}'].[address='#{server['address']}']\".applicationRequestRouting.weight:#{server['weight']} /commit:apphost",
-                        "-section:webFarms /\"[name='#{farm}'].[address='#{server['address']}']\".applicationRequestRouting.httpPort:#{server['port']} /commit:apphost",
-                        "-section:webFarms /\"[name='#{farm}'].[address='#{server['address']}']\".applicationRequestRouting.httpsPort:#{server['ssl_port']} /commit:apphost"
-                      ].each do | config_command |
+    [ "-section:webFarms /\"[name='#{farm}'].[address='#{server['address']}']\".applicationRequestRouting.weight:#{server['weight']} /commit:apphost",
+      "-section:webFarms /\"[name='#{farm}'].[address='#{server['address']}']\".applicationRequestRouting.httpPort:#{server['port']} /commit:apphost",
+      "-section:webFarms /\"[name='#{farm}'].[address='#{server['address']}']\".applicationRequestRouting.httpsPort:#{server['ssl_port']} /commit:apphost"
+    ].each do | config_command |
       iis_config config_command
     end
   end
