@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - vendor/**/*
+    - Guardfile
+
+LineLength:
+  Enabled: false
