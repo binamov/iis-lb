@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/binamov/iis-lb/badges/gpa.svg)](https://codeclimate.com/github/binamov/iis-lb)
+
 # iis-lb
 
 This cookbook configures IIS as a simple web load-balancer by creating an IIS Server Farm. It also allows you to pass a `node['iis-lb']['members']` hash to add servers to the said server farm.
