@@ -1,0 +1,17 @@
+DEPENDENCIES
+  iis-lb
+    path: .
+    metadata: true
+
+GRAPH
+  chef_handler (1.2.0)
+  iis (4.1.5)
+    windows (>= 1.34.6)
+  iis-lb (0.1.6)
+    iis (>= 0.0.0)
+    webpi (>= 0.0.0)
+    windows (>= 0.0.0)
+  webpi (1.2.8)
+    windows (>= 1.2.6)
+  windows (1.39.0)
+    chef_handler (>= 0.0.0)
