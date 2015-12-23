@@ -4,6 +4,10 @@
 
 This cookbook configures IIS as a simple web load-balancer by creating an IIS Server Farm. It also allows you to pass a `node['iis-lb']['members']` hash to add servers to the said server farm.
 
+## DISCLAIMER
+
+This cookbook is used to help demonstrate the wrapper-cookbook model, attribute overrides and search in Chef Essentials for Windows. This cookbook does NOT describe the definitive pattern for configuring IIS as a web load-balancer. Use at your own risk.
+
 ## Platforms
 
 This cookbook was tested on:
