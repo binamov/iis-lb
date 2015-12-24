@@ -17,6 +17,7 @@ This cookbook was tested on:
 ## Usage
 
 Adding ` recipe[iis-lb::default] ` to your Windows Server's `run_list` will install all the necessary components and create an IIS Server Farm `myServerFarm`. This will also add two servers to the Server Farm, based on the `node['iis-lb']['members']` hash. One should override this hash to add their own servers to the farm, such as in this example wrapper recipe:
+
 ```
 node.default['iis-lb']['members'] = [
   {
