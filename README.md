@@ -18,20 +18,24 @@ This cookbook was tested on:
 
 Adding ` recipe['iis-lb::default'] ` to your Windows Server's `run_list` will install all the necessary components and set the node up with a Server Farm `myServerFarm`. This will also add two servers to the Server Farm, based on the `node['iis-lb']['members']` hash. One should override this hash to add their own servers to the farm, such as in this example wrapper recipe:
 ```
-node.default['iis-lb']['members'] = [{
-  'address' => 'localhost',
-  'weight' => 100,
-  'port' => 4000,
-  'ssl_port' => 4000
-}, {
-  'address' => '127.0.0.1',
-  'weight' => 100,
-  'port' => 4001,
-  'ssl_port' => 4001
-}]
+node.default['iis-lb']['members'] = [
+  {
+    'address' => 'localhost',
+    'weight' => 100,
+    'port' => 4000,
+    'ssl_port' => 4000
+  },
+  {
+    'address' => '127.0.0.1',
+    'weight' => 100,
+    'port' => 4001,
+    'ssl_port' => 4001
+  }]
 
 include_recipe 'iis-lib::default'
 ```
+
+The ` recipe['iis-lb::sweep'] ` will remove the Server Farm `myServerFarm` from your IIS configuration.
 
 ## Dependencies
 
