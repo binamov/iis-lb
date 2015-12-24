@@ -6,7 +6,7 @@ This cookbook configures IIS as a simple web load-balancer by creating an IIS Se
 
 ## DISCLAIMER
 
-This cookbook is used to help demonstrate the wrapper-cookbook model, attribute overrides and search in Chef Essentials for Windows. This cookbook does NOT describe the definitive pattern for configuring IIS as a web load-balancer. Use at your own risk.
+This cookbook is used to help demonstrate the `wrapper-cookbook pattern`, `attribute precedence` and `search` in Chef Essentials training for Windows. This cookbook does NOT describe the definitive pattern for configuring IIS as a web load-balancer. Use at your own risk.
 
 ## Platforms
 
@@ -16,7 +16,7 @@ This cookbook was tested on:
 
 ## Usage
 
-Adding ` recipe['iis-lb::default'] ` to your Windows Server's `run_list` will install all the necessary components and set the node up with a Server Farm `myServerFarm`. This will also add two servers to the Server Farm, based on the `node['iis-lb']['members']` hash. One should override this hash to add their own servers to the farm, such as in this example wrapper recipe:
+Adding ` recipe[iis-lb::default] ` to your Windows Server's `run_list` will install all the necessary components and create an IIS Server Farm `myServerFarm`. This will also add two servers to the Server Farm, based on the `node['iis-lb']['members']` hash. One should override this hash to add their own servers to the farm, such as in this example wrapper recipe:
 ```
 node.default['iis-lb']['members'] = [
   {
@@ -35,7 +35,7 @@ node.default['iis-lb']['members'] = [
 include_recipe 'iis-lib::default'
 ```
 
-The ` recipe['iis-lb::sweep'] ` will remove the Server Farm `myServerFarm` from your IIS configuration.
+The ` recipe[iis-lb::sweep] ` will remove the Server Farm `myServerFarm` from your IIS configuration.
 
 ## Dependencies
 
