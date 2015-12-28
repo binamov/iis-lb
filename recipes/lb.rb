@@ -3,8 +3,6 @@
 # Recipe:: lb
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
-windows_feature 'IIS-WebServerRole'
-windows_feature 'IIS-CertProvider'
 
 include_recipe 'webpi'
 
