@@ -6,7 +6,7 @@ This cookbook configures IIS as a simple web load-balancer by creating an IIS Se
 
 ## DISCLAIMER
 
-This cookbook is used to help demonstrate the `wrapper-cookbook pattern`, `attribute precedence` and `search` in Chef Essentials training for Windows. This cookbook does NOT describe the definitive pattern for configuring IIS as a web load-balancer. Use at your own risk.
+This cookbook helps demonstrate the `wrapper-cookbook pattern`, `attribute precedence` and `search` in Chef Essentials training for Windows. This cookbook does NOT describe the definitive pattern for configuring IIS as a web load-balancer. Use at your own risk.
 
 ## Platforms
 
@@ -42,6 +42,5 @@ The ` recipe[iis-lb::sweep] ` will remove the Server Farm `myServerFarm` from yo
 
 This cookbook depends on the following Community Cookbooks:
 
-- windows
 - webpi
 - iis
