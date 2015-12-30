@@ -4,8 +4,8 @@ property :weight, :default => 100, :kind_of => Fixnum
 property :port, :default => 80, :kind_of => Fixnum
 property :ssl_port, :default => 443, :kind_of => Fixnum
 
-default_action :create
-action :create do
+default_action :add
+action :add do
   appcmd = "#{node['iis']['home']}\\appcmd.exe"
 
     iis_lb_farm new_resource.farm_name
