@@ -2,21 +2,23 @@
 
 # iis-lb
 
-This cookbook configures IIS as a simple web load-balancer by creating an IIS Server Farm. It also allows you to pass a `node['iis-lb']['members']` hash to add servers to the said server farm.
+This cookbook configures IIS as a simple web load-balancer by creating an IIS Server Farm. It also allows you to add servers to the farm by passing a `node['iis-lb']['members']` hash.
 
-## DISCLAIMER
+# DISCLAIMER
 
 This cookbook helps demonstrate the `wrapper-cookbook pattern`, `attribute precedence` and `search` in Chef Essentials training for Windows. This cookbook does NOT describe the definitive pattern for configuring IIS as a web load-balancer. Use at your own risk.
 
-## Platforms
+# Platforms
 
 This cookbook was tested on:
 
 - Windows Server 2012 R2
 
-## Usage
+# Usage
 
-Adding ` recipe[iis-lb::default] ` to your Windows Server's `run_list` will install all the necessary components and create an IIS Server Farm `myServerFarm`. This will also add two servers to the Server Farm, based on the `node['iis-lb']['members']` hash. One should override this hash to add their own servers to the farm, such as in this example wrapper recipe:
+## default
+
+Add ` recipe[iis-lb::default] ` to your Windows Server's `run_list` to install the necessary components and create an IIS Server Farm `myServerFarm`. This will also add two servers to the Server Farm, based on the `node['iis-lb']['members']` hash. One should override this hash to add their own servers to the farm, such as in this example wrapper recipe:
 
 ```
 node.default['iis-lb']['members'] = [
@@ -36,9 +38,45 @@ node.default['iis-lb']['members'] = [
 include_recipe 'iis-lib::default'
 ```
 
-The ` recipe[iis-lb::sweep] ` will remove the Server Farm `myServerFarm` from your IIS configuration.
+## _arr
+The ` recipe[iis-lb::_arr] ` will install Application Request Router (ARR) 3.0 using Microsoft Web Platform Installer (webpi).
 
-## Dependencies
+# Resources
+
+## iis_lb_farm
+
+Creates an IIS Server Farm, sets its load-balancing algorithm and creates the necessary URL rewrite rules.
+
+### actions
+`default` = `:create`
+
+- `:create` - creates the server farm, load balancing algorithm and the URL rewrite rules.
+
+### Attribute Parameters
+
+- `farm_name` - the name of the Server Farm.
+- `algorithm` - sets the Server Farm's Load Balancing algorithm. Default is `WeightedRoundRobin`, Valid Values are: 'WeightedRoundRobin', 'LeastRequests', 'LeastResponseTime', 'WeightedTotalTraffic', 'RequestHash'
+
+
+## iis_lb_server
+
+Adds a server to a Server Farm.
+
+### actions
+`default` = `:add`
+
+- `:add` - adds a specified server to a server farm. If the specified farm does not exist, it will be created automagically. If the farm is not specified then servers will get added to a new `myServerFarm`.
+
+### Attribute Parameters
+
+- `server_address` - name attribute. Specifies IP or FQDN of a server to add to the farm.
+- `farm_name` - The name of the IIS Server Farm to add the server to. Default is `myServerFarm`
+- `weight` - Relative weight for Weighted Round Robin load distribution. Default is `100`
+- `port` - HTTP port that the server is listening on. Default is `80`
+- `ssl_port` - HTTPS port that the server is listening on. Default is `443`
+
+
+# Dependencies
 
 This cookbook depends on the following Community Cookbooks:
 
