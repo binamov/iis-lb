@@ -2,15 +2,19 @@ DEPENDENCIES
   iis-lb
     path: .
     metadata: true
+  webpi
+    git: https://github.com/chef-cookbooks/webpi.git
+    revision: 78f5c15df5fe35b6ece459ff283e05c0ef41f936
+    branch: wincook
 
 GRAPH
   chef_handler (1.2.0)
   iis (4.1.5)
     windows (>= 1.34.6)
-  iis-lb (0.2.0)
+  iis-lb (0.2.1)
     iis (>= 0.0.0)
     webpi (>= 0.0.0)
-  webpi (1.2.8)
-    windows (>= 1.2.6)
+  webpi (1.2.9)
+    windows (>= 1.39.0)
   windows (1.39.0)
     chef_handler (>= 0.0.0)
