@@ -14,13 +14,14 @@ This cookbook was tested on:
 
 - Windows Server 2012 R2
 
+It may (or may not) work on other Windows Server variants.
+
 # Usage
 
-## default
-
-Add ` recipe[iis-lb::default] ` to your Windows Server's `run_list` to install the necessary components and create an IIS Server Farm `myServerFarm`. This will also add two servers to the Server Farm, based on the `node['iis-lb']['members']` hash. One should override this hash to add their own servers to the farm, such as in this example wrapper recipe:
+Specify your servers by setting the `node['iis-lb']['members']` attribute hash in a wrapper cookbook. Then include the `'iis-lb::default'` recipe. This creates the Server Farm and adds your servers to it. For example:
 
 ```
+# contents of chef-repo/cookbooks/my-wrapper-cookbook/recipes/default.rb
 node.default['iis-lb']['members'] = [
   {
     'address' => 'localhost',
@@ -38,8 +39,14 @@ node.default['iis-lb']['members'] = [
 include_recipe 'iis-lb::default'
 ```
 
+# Recipes
+
+## default
+Installs the necessary components and create an IIS Server Farm `myServerFarm`. This also adds servers to the Server Farm, based on the `node['iis-lb']['members']` attribute hash.
+
 ## _arr
-The ` recipe[iis-lb::_arr] ` will install Application Request Router (ARR) 3.0 using Microsoft Web Platform Installer (webpi).
+Installs Application Request Router (ARR) 3.0 using Microsoft Web Platform Installer (webpi). This recipe is used by the resources in this cookbook.
+
 
 # Resources
 
@@ -82,7 +89,7 @@ Adds a server to a Server Farm.
 ### Actions
 `default` = `:add`
 
-- `:add` - adds a server to a server farm. If the specified farm does not exist, it will be created automagically. If the farm is not specified then servers get added to a new `myServerFarm`.
+- `:add` - adds a server to a server farm. If the specified farm does not exist, it is created automagically. If the farm is not specified then servers get added to a new `myServerFarm`.
 - `:remove` - removes a server from a server farm. If the farm is not specified, the server is removed from `myServerFarm`.
 
 ### Attribute Parameters
