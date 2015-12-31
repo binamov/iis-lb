@@ -35,7 +35,7 @@ node.default['iis-lb']['members'] = [
     'ssl_port' => 4001
   }]
 
-include_recipe 'iis-lib::default'
+include_recipe 'iis-lb::default'
 ```
 
 ## _arr
