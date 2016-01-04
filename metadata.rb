@@ -10,3 +10,4 @@ supports 'windows'
 
 depends 'webpi'
 depends 'iis'
+depends 'compat_resource'
