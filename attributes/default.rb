@@ -10,4 +10,5 @@ default['iis-lb']['members'] = [
     'weight' => 100,
     'port' => 4001,
     'ssl_port' => 4001
-  }]
+  }
+]
