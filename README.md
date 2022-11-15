@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/github/binamov/iis-lb/badges/gpa.svg)](https://codeclimate.com/github/binamov/iis-lb) [![Test Coverage](https://codeclimate.com/github/binamov/iis-lb/badges/coverage.svg)](https://codeclimate.com/github/binamov/iis-lb/coverage)
+### This repo is archived.
 
 # iis-lb
 
